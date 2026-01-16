@@ -1,0 +1,7 @@
+*.jsonc
+*.log
+*.tmp
+
+*.vscode/
+
+*.env
