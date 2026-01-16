@@ -1,0 +1,25 @@
+name: Deploy Azure Infrastructure using Bicep (6536)
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy-iac:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy Bicep Template
+        run: |
+          az deployment group create \
+            --resource-group pro6536lab18 \
+            --template-file webapp-6536.bicep
